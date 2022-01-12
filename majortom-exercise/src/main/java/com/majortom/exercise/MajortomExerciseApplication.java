@@ -1,16 +1,13 @@
-package com.majortom;
+package com.majortom.exercise;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * @author Major Tom
- */
 @SpringBootApplication
-public class MajortomApplication {
+public class MajortomExerciseApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MajortomApplication.class, args);
+        SpringApplication.run(MajortomExerciseApplication.class, args);
     }
 
 }
