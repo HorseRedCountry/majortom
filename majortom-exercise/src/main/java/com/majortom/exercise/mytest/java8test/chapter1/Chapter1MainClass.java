@@ -1,7 +1,9 @@
 package com.majortom.exercise.mytest.java8test.chapter1;
 
 import com.majortom.exercise.mytest.java8test.chapter1.entity.Apple;
+import com.majortom.exercise.mytest.java8test.chapter1.predicates.AppleFormatter;
 import com.majortom.exercise.mytest.java8test.chapter1.predicates.ApplePredicate;
+import com.majortom.exercise.mytest.java8test.chapter1.predicates.impl.AppleColorFormatter;
 import com.majortom.exercise.mytest.java8test.chapter1.predicates.impl.AppleGreenPredicate;
 import com.majortom.exercise.mytest.java8test.chapter1.predicates.impl.AppleHeavyPredicate;
 import com.majortom.exercise.mytest.java8test.chapter1.predicates.impl.AppleRedPredicate;
@@ -53,6 +55,8 @@ public class Chapter1MainClass {
         System.out.println("===================================================");
         List<Apple> heavyList = filterApples(appleList, new AppleHeavyPredicate());
         heavyList.forEach(apple-> System.out.println(apple.toString()));
+        System.out.println("===================================================");
+        prettyPrintApple(appleList,new AppleColorFormatter());
     }
 
     public static List<Apple> filterApples(List<Apple> appleList, ApplePredicate predicate){
@@ -64,4 +68,11 @@ public class Chapter1MainClass {
         });
         return resultList;
     }
+
+    public static void prettyPrintApple(List<Apple> appleList, AppleFormatter formatter){
+        appleList.forEach(apple -> {
+            System.out.println(formatter.format(apple));
+        });
+    }
+
 }
