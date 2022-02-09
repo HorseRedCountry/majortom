@@ -1,7 +1,11 @@
 package com.majortom.exercise.mytest.java8test.chapter2;
 
+import com.majortom.exercise.mytest.java8test.chapter2.entity.Trader;
+import com.majortom.exercise.mytest.java8test.chapter2.entity.Transaction;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -27,7 +31,21 @@ public class Chapter2MainClass {
         List<int[]> collect = numberArr1.stream()
                 .flatMap(i -> numberArr2.stream().map(j -> new int[]{i, j}))
                 .collect(toList());
-        collect.forEach(x-> System.out.println(Arrays.toString(x)));
+        collect.forEach(x -> System.out.println(Arrays.toString(x)));
+
+        Integer sumResult = numberArr.stream().reduce(0, Integer::sum);
+        System.out.println("sumResult is: " + sumResult);
+        Optional<Integer> maxResult = numberArr.stream().reduce(Integer::max);
+
+        //测试数据
+        Trader raoul=new Trader("Raoul","Cambridge");
+        Trader mario=new Trader("Mario","Milan");
+        Trader alan=new Trader("Alan","Cambridge");
+        Trader brian=new Trader("Brian","Cambridge");
+
+        List<Transaction> transactions=Arrays.asList(
+          new Transaction();
+        );
 
     }
 }
