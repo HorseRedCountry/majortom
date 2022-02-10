@@ -36,6 +36,7 @@ public class Chapter2MainClass {
         Integer sumResult = numberArr.stream().reduce(0, Integer::sum);
         System.out.println("sumResult is: " + sumResult);
         Optional<Integer> maxResult = numberArr.stream().reduce(Integer::max);
+        System.out.println("maxResult is: " + maxResult);
         System.out.println("=====================================================================================");
         //测试数据
         Trader raoul = new Trader("Raoul", "Cambridge");
@@ -71,19 +72,43 @@ public class Chapter2MainClass {
                 .collect(Collectors.toList());
         System.out.println("Q3结果是： " + q3Result);
         //Q4：返回所有交易员的姓名字符串，按字母顺序排序。
-        List<String> q4Result = transactions.stream()
-                .map(Transaction::getTrader)
+        String q4Result = transactions.stream()
+                .map(transaction -> transaction.getTrader().getCity())
                 .distinct()
-                .map(Trader::getName)
-                .sorted(String::compareTo)
-                .collect(Collectors.toList());
+                .sorted()
+                .reduce("", (a, b) -> a + b);
         System.out.println("Q4结果是： " + q4Result);
         //Q5：有没有交易员是在米兰工作的？
-
+        boolean q5Result = transactions.stream()
+                .anyMatch(transaction -> "Milan".equals(transaction.getTrader().getCity()));
+        System.out.println("Q5结果是： " + q5Result);
         //Q6：打印生活在剑桥的交易员的所有交易额。
-
+        int q6Result = transactions.stream()
+                .filter(transaction -> "Cambridge".equals(transaction.getTrader().getCity()))
+                .map(Transaction::getValue)
+                .reduce(0, Integer::sum);
+        System.out.println("Q6结果是： " + q6Result);
         //Q7：所有交易中，最高的交易额是多少？
-
-        //Q8：所有交易中，最高的交易额是多少？
+        Integer q7Result = transactions.stream()
+                .map(Transaction::getValue)
+                .reduce(0, Integer::max);
+        System.out.println("Q7结果是： " + q7Result);
+        //Q8：找到交易额最小的交易
+        //方法1
+        transactions.stream()
+                .map(Transaction::getValue)
+                .reduce(Integer::min)
+                .ifPresent(
+                        x -> transactions.stream()
+                                .filter(transaction -> x == transaction.getValue())
+                                .collect(Collectors.toList())
+                                .forEach(System.out::println)
+                );
+        //方法2:
+        Optional<Transaction> reduce = transactions.stream()
+                .reduce((a, b) -> a.getValue() > b.getValue() ? b : a);
+        //方法3
+        Optional<Transaction> min = transactions.stream()
+                .min(Comparator.comparing(Transaction::getValue));
     }
 }
