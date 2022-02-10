@@ -36,7 +36,7 @@ public class Chapter2MainClass {
         Integer sumResult = numberArr.stream().reduce(0, Integer::sum);
         System.out.println("sumResult is: " + sumResult);
         Optional<Integer> maxResult = numberArr.stream().reduce(Integer::max);
-
+        System.out.println("=====================================================================================");
         //测试数据
         Trader raoul = new Trader("Raoul", "Cambridge");
         Trader mario = new Trader("Mario", "Milan");
@@ -50,13 +50,40 @@ public class Chapter2MainClass {
                 new Transaction(mario, 2012, 700),
                 new Transaction(alan, 2012, 950)
         );
-        //Q1：找出2011年发生的所有交易，并按交易额排序（从低到高）
+        //Q1：找出2011年发生的所有交易，并按交易额排序（从低到高）。
         List<Transaction> q1Result = transactions.stream()
                 .filter(transaction -> transaction.getYear() == 2011)
                 .sorted(Comparator.comparing(Transaction::getValue))
                 .collect(Collectors.toList());
         System.out.println("Q1结果是： " + q1Result);
-        //Q2：交易员都在哪些不同的城市工作过
+        //Q2：交易员都在哪些不同的城市工作过。
+        List<String> q2Result = transactions.stream()
+                .map(transaction -> transaction.getTrader().getCity())
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println("Q2结果是： " + q2Result);
+        //Q3：查找所有来自于剑桥的交易员，并按姓名排序。
+        List<Trader> q3Result = transactions.stream()
+                .map(Transaction::getTrader)
+                .distinct()
+                .filter(trader -> "Cambridge".equals(trader.getCity()))
+                .sorted(Comparator.comparing(Trader::getName))
+                .collect(Collectors.toList());
+        System.out.println("Q3结果是： " + q3Result);
+        //Q4：返回所有交易员的姓名字符串，按字母顺序排序。
+        List<String> q4Result = transactions.stream()
+                .map(Transaction::getTrader)
+                .distinct()
+                .map(Trader::getName)
+                .sorted(String::compareTo)
+                .collect(Collectors.toList());
+        System.out.println("Q4结果是： " + q4Result);
+        //Q5：有没有交易员是在米兰工作的？
 
+        //Q6：打印生活在剑桥的交易员的所有交易额。
+
+        //Q7：所有交易中，最高的交易额是多少？
+
+        //Q8：所有交易中，最高的交易额是多少？
     }
 }
