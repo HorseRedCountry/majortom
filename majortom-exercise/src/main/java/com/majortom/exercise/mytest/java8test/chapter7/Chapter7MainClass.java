@@ -20,6 +20,8 @@ public class Chapter7MainClass {
         System.out.println("Parallel sum done in: " + measureSumPerf(ParallelStreams::parallelSum, 10_000_000) + "msecs");
         System.out.println("Inerative sum done in: " + measureSumPerf(ParallelStreams::iterativeSum, 10_000_000) + "msecs");
         System.out.println("Range sum done in: " + measureSumPerf(ParallelStreams::rangedSum, 10_000_000) + "msecs");
+        System.out.println("Parallel Range sum done in: " + measureSumPerf(ParallelStreams::parallelRangeSum, 10_000_000) + "msecs");
+        System.out.println("Fork Join sum done in: " + measureSumPerf(ParallelStreams::forkJoinSum, 10_000_000) + "msecs");
     }
 
 
@@ -36,7 +38,7 @@ public class Chapter7MainClass {
             long start = System.nanoTime();
             long sum = adder.apply(n);
             long duration = (System.nanoTime() - start) / 1_000_000;
-            System.out.println("Result: " + sum);
+            //System.out.println("Result: " + sum);
             if (duration < fatest) {
                 fatest = duration;
             }

@@ -1,5 +1,6 @@
 package com.majortom.exercise.mytest.java8test.chapter7.entity;
 
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -48,5 +49,17 @@ public class ParallelStreams {
     public static long rangedSum(long n) {
         return LongStream.rangeClosed(1, n)
                 .reduce(0L, Long::sum);
+    }
+
+    public static long parallelRangeSum(long n) {
+        return LongStream.rangeClosed(1, n)
+                .parallel()
+                .reduce(0L, Long::sum);
+    }
+
+    public static long forkJoinSum(long n) {
+        long[] numbers = LongStream.rangeClosed(1, n).toArray();
+        ForkJoinSumCalculator task = new ForkJoinSumCalculator(numbers);
+        return new ForkJoinPool().invoke(task);
     }
 }
