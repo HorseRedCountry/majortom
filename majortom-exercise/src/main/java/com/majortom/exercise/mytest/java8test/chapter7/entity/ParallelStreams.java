@@ -1,5 +1,6 @@
 package com.majortom.exercise.mytest.java8test.chapter7.entity;
 
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 /**
@@ -42,5 +43,10 @@ public class ParallelStreams {
             result += i;
         }
         return result;
+    }
+
+    public static long rangedSum(long n) {
+        return LongStream.rangeClosed(1, n)
+                .reduce(0L, Long::sum);
     }
 }

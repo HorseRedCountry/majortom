@@ -18,7 +18,8 @@ public class Chapter7MainClass {
     public static void main(String[] args) {
         System.out.println("Sequential sum done in: " + measureSumPerf(ParallelStreams::sequentialSum, 10_000_000) + "msecs");
         System.out.println("Parallel sum done in: " + measureSumPerf(ParallelStreams::parallelSum, 10_000_000) + "msecs");
-        System.out.println("Parallel sum done in: " + measureSumPerf(ParallelStreams::iterativeSum, 10_000_000) + "msecs");
+        System.out.println("Inerative sum done in: " + measureSumPerf(ParallelStreams::iterativeSum, 10_000_000) + "msecs");
+        System.out.println("Range sum done in: " + measureSumPerf(ParallelStreams::rangedSum, 10_000_000) + "msecs");
     }
 
 
