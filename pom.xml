@@ -10,6 +10,7 @@
     <description>majortom</description>
     <modules>
         <module>majortom-exercise</module>
+        <module>majortom-java</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
