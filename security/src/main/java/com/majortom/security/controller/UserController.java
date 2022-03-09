@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022/3/8 15:19
  */
 @RestController
-@RequestMapping(value="/hellodemo")
+@RequestMapping(value="/security-demo")
 public class UserController {
 
     @GetMapping(value="/hello")
