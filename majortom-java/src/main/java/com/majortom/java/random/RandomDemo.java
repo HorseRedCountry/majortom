@@ -17,5 +17,7 @@ public class RandomDemo {
             sb.append(RandomUtil.randomInt(10));
         }
         System.out.println(sb);
+        String result=String.format("%s%s","test_string","0225");
+        System.out.println(result);
     }
 }
