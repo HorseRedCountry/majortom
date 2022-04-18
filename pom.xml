@@ -12,6 +12,7 @@
         <module>majortom-exercise</module>
         <module>majortom-java</module>
         <module>security</module>
+        <module>common</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
