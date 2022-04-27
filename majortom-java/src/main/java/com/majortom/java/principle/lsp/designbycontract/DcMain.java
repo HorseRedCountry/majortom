@@ -3,6 +3,7 @@ package com.majortom.java.principle.lsp.designbycontract;
 import com.google.common.collect.Maps;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -22,5 +23,9 @@ public class DcMain {
         DcSon son=new DcSon();
         HashMap map = Maps.newHashMap();
         son.doSomething(map);
+
+        Map<Long,String> testMap=Maps.newHashMap();
+        testMap.put(1L,"哈哈哈");
+        System.out.println(testMap.get(2L));
     }
 }
