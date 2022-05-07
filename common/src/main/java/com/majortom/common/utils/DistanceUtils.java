@@ -40,7 +40,7 @@ public class DistanceUtils {
         double distance = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a / 2), 2) +
                 Math.cos(rad(latitudeA)) * Math.cos(rad(latitudeB)) * Math.pow(Math.sin(b / 2), 2)));
         distance = distance * EARTH_RADIUS;
-        distance = Math.round(distance * 10000) / 10000;
+        distance = (double) Math.round(distance * 10000) / 10000;
         return distance;
     }
 

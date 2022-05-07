@@ -16,6 +16,7 @@ public class UtilsMainMethod {
         double latitudeA = 31.816223;
         double longitudeB = 117.216367;
         double latitudeB = 31.816346;
-        System.out.println(DistanceUtils.getDistance(longitudeA, latitudeA, longitudeB, latitudeB));
+        double distance=DistanceUtils.getDistance(longitudeA, latitudeA, longitudeB, latitudeB);
+        System.out.println(distance<=300);
     }
 }
