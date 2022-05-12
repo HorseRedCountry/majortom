@@ -1,5 +1,6 @@
 package com.majortom.common;
 
+import cn.hutool.core.date.DateUtil;
 import com.majortom.common.utils.DistanceUtils;
 
 /**
@@ -18,5 +19,7 @@ public class UtilsMainMethod {
         double latitudeB = 31.816346;
         double distance=DistanceUtils.getDistance(longitudeA, latitudeA, longitudeB, latitudeB);
         System.out.println(distance<=300);
+        String timeStr="2022-04-30 12:28:00";
+        System.out.println(DateUtil.parse(timeStr,"yyyy-MM-dd HH:mm:ss"));
     }
 }
