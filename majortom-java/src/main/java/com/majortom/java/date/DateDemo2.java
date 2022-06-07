@@ -1,5 +1,6 @@
 package com.majortom.java.date;
 
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 
 import java.util.Arrays;
@@ -25,5 +26,10 @@ public class DateDemo2 {
         System.out.println(ids.substring(1));
         List<String> strings = Arrays.asList(split);
         System.out.println(strings);
+        System.out.println("===============================================");
+        //String now = DateUtil.now();
+        System.out.println(DateUtil.format(DateUtil.date(),"yyyy-MM"));
+        DateTime spStartTime = DateUtil.parse("2022-06-06 08:30:00", "yyyy-MM-dd HH:mm:ss");
+        System.out.println(DateUtil.format(spStartTime, "yyyy-MM-dd"));
     }
 }
