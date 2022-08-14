@@ -28,10 +28,10 @@
 
         <dependency>
             <groupId>com.majortom</groupId>
-            <artifactId>stdlib</artifactId>
+            <artifactId>algs4</artifactId>
             <scope>system</scope>
             <version>1.0.0</version>
-            <systemPath>${basedir}/libs/stdlib.jar</systemPath>
+            <systemPath>${basedir}/libs/algs4.jar</systemPath>
         </dependency>
 
 

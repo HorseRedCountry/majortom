@@ -1,6 +1,8 @@
 package com.majortom.algorithm.chapter1;
 
-import c
+import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 /**
  * <p>
@@ -12,6 +14,13 @@ import c
  */
 public class WhiteList {
     public static void main(String[] args) {
-        In.readInts(args[0]);
+        int[] ints = new In("D:\\myProjects\\majortom\\majortom-algorithm\\src\\main\\resources\\testArr.txt").readAllInts();
+        StaticSetofInts set = new StaticSetofInts(ints);
+        while (!StdIn.isEmpty()) {
+            int key = StdIn.readInt();
+            if (!set.contains(key)) {
+                StdOut.println(key);
+            }
+        }
     }
 }
