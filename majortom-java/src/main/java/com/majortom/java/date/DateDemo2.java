@@ -2,6 +2,7 @@ package com.majortom.java.date;
 
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,5 +32,16 @@ public class DateDemo2 {
         System.out.println(DateUtil.format(DateUtil.date(),"yyyy-MM"));
         DateTime spStartTime = DateUtil.parse("2022-06-06 08:30:00", "yyyy-MM-dd HH:mm:ss");
         System.out.println(DateUtil.format(spStartTime, "yyyy-MM-dd"));
+
+        System.out.println("=====================================");
+        System.out.println(DateUtil.endOfMonth(DateUtil.parse("2022-07","yyyy-MM")));
+        System.out.println("=====================================");
+        System.out.println(DateUtil.formatDate(DateUtil.lastMonth()));
+
+        System.out.println(DateUtil.month(DateUtil.date()));
+
+        System.out.println(StrUtil.sub("胡蕾慧15618202757".trim(),0,3));
+
+
     }
 }
