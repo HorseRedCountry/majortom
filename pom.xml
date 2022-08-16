@@ -14,6 +14,7 @@
         <module>security</module>
         <module>common</module>
         <module>majortom-algorithm</module>
+        <module>majortom-web</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
