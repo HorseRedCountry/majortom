@@ -21,5 +21,11 @@ public class UtilsMainMethod {
         System.out.println(distance<=300);
         String timeStr="2022-04-30 12:28:00";
         System.out.println(DateUtil.parse(timeStr,"yyyy-MM-dd HH:mm:ss"));
+
+        String str="100+王轶飞+15121096759|100+马红国+15121096759|";
+        String[] scorerNameArr = str.trim().split("\\|");
+        System.out.println(scorerNameArr.length);
+        System.out.println(scorerNameArr[0]);
+        System.out.println(scorerNameArr[1]);
     }
 }
