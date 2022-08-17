@@ -1,12 +1,12 @@
 package com.majortom.web.controller;
 
-import com.majortom.web.PageVo;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import com.majortom.web.common.Result;
+import com.majortom.web.pojo.entity.Person;
+import com.majortom.web.service.PersonService;
+import org.springframework.web.bind.annotation.*;
 
-import javax.xml.transform.Result;
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * <p>
@@ -20,14 +20,30 @@ import javax.xml.transform.Result;
 @RequestMapping("/demo")
 public class WebController {
 
+    @Resource
+    private PersonService personService;
+
     @GetMapping("/hello")
     public String sayHello() {
         return "hello!";
     }
 
-    public PageVo queryPage(@RequestParam(required = false) Integer currentPage,
+    @GetMapping("/page")
+    public Result<List<Person>> queryPage(@RequestParam(required = false) Integer currentPage,
                             @RequestParam(required = false) Integer pageSize) {
-        return null;
+        currentPage = null == currentPage ? 1 : currentPage;
+        pageSize = null == pageSize ? 10 : pageSize;
+        return Result.success(personService.queryPage(currentPage,pageSize),personService.count());
+    }
+
+    @GetMapping("/get/{id}")
+    public Result<Person> getById(@PathVariable Long id) {
+        return Result.success(personService.getById(id));
+    }
+
+    @GetMapping("/getAll")
+    public List<Person> getAll() {
+        return personService.list();
     }
 
 }

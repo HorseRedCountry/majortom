@@ -1,6 +1,6 @@
-package com.majortom.web;
+package com.majortom.web.pojo.vo;
 
-import com.majortom.web.entity.Person;
+import com.majortom.web.pojo.entity.Person;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,7 +28,5 @@ public class PageVo {
     private int pageSize;
     //当前页码
     private int currentPage;
-    //当前页的数据
-    List<Person> data;
 
 }

@@ -1,7 +1,14 @@
-spring:
-  application:
-    name: web_demo
 server:
   port: 9090
   servlet:
     context-path: /webDemo
+spring:
+  application:
+    name: web_demo
+  datasource:
+    url: jdbc:mysql://82.157.65.202:3306/web_demo?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 1234
+#mybatis-plus:
+#  mapper-locations: classpath:com/majortom/security/mapper/xml/*Mapper.xml
