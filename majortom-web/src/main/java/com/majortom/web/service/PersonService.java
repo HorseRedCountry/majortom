@@ -23,4 +23,11 @@ public interface PersonService extends IService<Person> {
      * @return /
      */
     List<Person> queryPage(Integer currentPage, Integer pageSize);
+
+    /**
+     * 测试排序和筛选
+     *
+     * @return /
+     */
+    List<Person> testOrderBy();
 }

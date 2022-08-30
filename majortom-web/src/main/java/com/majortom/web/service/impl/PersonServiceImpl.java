@@ -1,5 +1,6 @@
 package com.majortom.web.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.majortom.web.pojo.entity.Person;
 import com.majortom.web.mapper.PersonMapper;
@@ -22,5 +23,15 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
     @Override
     public List<Person> queryPage(Integer currentPage, Integer pageSize) {
         return baseMapper.queryPage((currentPage - 1) * pageSize, pageSize);
+    }
+
+    @Override
+    public List<Person> testOrderBy() {
+        LambdaQueryWrapper<Person> queryWrapper = new LambdaQueryWrapper<Person>()
+                .eq(Person::getGrade,"1401")
+                .orderByDesc(Person::getGmtCreate)
+                .groupBy(Person::getName);
+
+        return this.list(queryWrapper);
     }
 }

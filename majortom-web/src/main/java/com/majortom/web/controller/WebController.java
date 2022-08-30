@@ -30,10 +30,10 @@ public class WebController {
 
     @GetMapping("/page")
     public Result<List<Person>> queryPage(@RequestParam(required = false) Integer currentPage,
-                            @RequestParam(required = false) Integer pageSize) {
+                                          @RequestParam(required = false) Integer pageSize) {
         currentPage = null == currentPage ? 1 : currentPage;
         pageSize = null == pageSize ? 10 : pageSize;
-        return Result.success(personService.queryPage(currentPage,pageSize),personService.count());
+        return Result.success(personService.queryPage(currentPage, pageSize), personService.count());
     }
 
     @GetMapping("/get/{id}")
@@ -44,6 +44,11 @@ public class WebController {
     @GetMapping("/getAll")
     public List<Person> getAll() {
         return personService.list();
+    }
+
+    @GetMapping("/testOrderBy")
+    public List<Person> testOrderBy() {
+        return personService.testOrderBy();
     }
 
 }

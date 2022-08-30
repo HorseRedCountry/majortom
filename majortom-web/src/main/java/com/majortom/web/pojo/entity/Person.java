@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -27,13 +28,15 @@ public class Person implements Serializable {
     @TableId(type = IdType.AUTO)
     private Long id;
 
-    @TableField
     private Integer age;
 
-    @TableField
     private String name;
 
-    @TableField
     private String nickName;
+
+    private Date gmtCreate;
+
+    private String grade;
+
 
 }
