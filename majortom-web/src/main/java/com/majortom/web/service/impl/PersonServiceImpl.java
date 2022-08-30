@@ -6,9 +6,14 @@ import com.majortom.web.pojo.entity.Person;
 import com.majortom.web.mapper.PersonMapper;
 import com.majortom.web.pojo.vo.PageVo;
 import com.majortom.web.service.PersonService;
+import org.apache.ibatis.transaction.Transaction;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -26,12 +31,17 @@ public class PersonServiceImpl extends ServiceImpl<PersonMapper, Person> impleme
     }
 
     @Override
-    public List<Person> testOrderBy() {
+    public List<Person> testOrderBy(String grade) {
+        // return baseMapper.testOrderBy(grade);
         LambdaQueryWrapper<Person> queryWrapper = new LambdaQueryWrapper<Person>()
-                .eq(Person::getGrade,"1401")
-                .orderByDesc(Person::getGmtCreate)
-                .groupBy(Person::getName);
-
-        return this.list(queryWrapper);
+                .eq(Person::getGrade, "1401")
+                .orderByDesc(Person::getGmtCreate);
+        List<Person> rawList = this.list(queryWrapper);
+        List<Person> resultList = rawList.stream()
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toCollection(
+                                () -> new TreeSet<>(Comparator.comparing(Person::getName))
+                        ), ArrayList::new));
+        return resultList;
     }
 }

@@ -27,7 +27,8 @@ public interface PersonService extends IService<Person> {
     /**
      * 测试排序和筛选
      *
+     * @param grade 班级
      * @return /
      */
-    List<Person> testOrderBy();
+    List<Person> testOrderBy(String grade);
 }

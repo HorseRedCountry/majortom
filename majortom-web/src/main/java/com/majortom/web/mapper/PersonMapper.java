@@ -25,4 +25,7 @@ public interface PersonMapper extends BaseMapper<Person> {
      */
     @Select("select * from person limit ${begin},${pageSize}")
     List<Person> queryPage(@Param("begin") Integer currentPage, @Param("pageSize")Integer pageSize);
+
+    @Select("SELECT * FROM (SELECT * FROM person WHERE grade=#{grade} order by gmt_create DESC LIMIT 1000) a GROUP BY name")
+    List<Person> testOrderBy(@Param("grade") String grade);
 }

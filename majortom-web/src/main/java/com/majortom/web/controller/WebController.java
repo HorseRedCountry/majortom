@@ -46,9 +46,9 @@ public class WebController {
         return personService.list();
     }
 
-    @GetMapping("/testOrderBy")
-    public List<Person> testOrderBy() {
-        return personService.testOrderBy();
+    @GetMapping("/testOrderBy/{grade}")
+    public List<Person> testOrderBy(@PathVariable(value="grade")String grade) {
+        return personService.testOrderBy(grade);
     }
 
 }
