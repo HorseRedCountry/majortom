@@ -16,6 +16,7 @@
         <module>majortom-algorithm</module>
         <module>majortom-web</module>
         <module>effective-java</module>
+        <module>clean-code</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
