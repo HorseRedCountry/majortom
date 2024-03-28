@@ -17,6 +17,7 @@
         <module>majortom-web</module>
         <module>effective-java</module>
         <module>clean-code</module>
+        <module>kmcloud-ai-demo</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>

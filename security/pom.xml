@@ -6,10 +6,8 @@
         <groupId>com.majortom</groupId>
         <artifactId>majortom</artifactId>
         <version>1.0.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>security</artifactId>
-    <version>1.0.0</version>
     <name>security</name>
     <description>security</description>
     <dependencies>

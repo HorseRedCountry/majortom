@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<script>
+    function queryAi() {
+        let selectElement = document.getElementById("knowledgeSel");
+        let selectedValue = selectElement.value;
+        if (selectedValue.trim().length === 0) {
+            alert("请选择知识库!");
+            return;
+        }
+        let inputElement = document.getElementById("input");
+        let inputStr = inputElement.value;
+        if (inputStr.trim().length === 0) {
+            alert("请输入内容!");
+            return;
+        }
+        fetch('http://localhost:8080/kmsoft/ai/query?queryStr=' + inputStr + "&&sel=" + selectedValue) // 发起GET请求
+            .then(function (response) { // 处理响应
+                return response.text(); // 将响应转换为文本格式
+            })
+            .then(function (data) { // 处理返回的数据
+                alert(data);
+            });
+    }
+</script>
+<body>
+<h1>KMCLOUD AI Demo</h1>
+<label>选择知识库列表：</label>
+<label>
+    <select name="knowledgeSel" id="knowledgeSel">
+        <option th:each="item:${comboValue}"
+                th:value="${item}"
+                th:text="${item}" value="1">
+        </option>
+    </select>
+</label>
+
+<div th:fragment="input">
+    <label>
+        <input type="text" name="input" id="input"/>
+    </label>
+    <label>
+        <input type="submit" value="提交" onclick="queryAi()"/>
+    </label>
+</div>
+
+
+</body>
+</html>

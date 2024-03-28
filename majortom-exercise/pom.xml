@@ -6,10 +6,8 @@
         <groupId>com.majortom</groupId>
         <artifactId>majortom</artifactId>
         <version>1.0.0</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <artifactId>majortom-exercise</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <name>majortom-exercise</name>
     <packaging>pom</packaging>
     <description>majortom-exercise</description>
