@@ -18,6 +18,7 @@
         <module>effective-java</module>
         <module>clean-code</module>
         <module>kmcloud-ai-demo</module>
+        <module>majortom-spring</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
