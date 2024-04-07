@@ -1,8 +1,10 @@
 package com.majortom.spring.context;
 
+import java.util.Objects;
+
 /**
  * <p>
- *
+ * 资源文件定义
  * </p>
  *
  * @author Major Tom
@@ -25,4 +27,5 @@ public class Resource {
     public String getName() {
         return name;
     }
+
 }

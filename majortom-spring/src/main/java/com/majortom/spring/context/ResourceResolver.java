@@ -5,20 +5,21 @@ import com.sun.org.slf4j.internal.LoggerFactory;
 
 import java.io.IOException;
 import java.io.UncheckedIOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.*;
 import java.util.function.Function;
 
 import static com.sun.org.apache.xalan.internal.utils.SecuritySupport.getContextClassLoader;
 
 /**
  * <p>
- *
+ * 扫描器
  * </p>
  *
  * @author Major Tom
@@ -67,15 +68,55 @@ public class ResourceResolver {
         }
     }
 
-    private <R> void scanFile(boolean b, String uriBaseStr, Object o, List<R> collector, Function<Resource, R> mapper) {
+    private ClassLoader getContextClassLoader() {
+        ClassLoader loader;
+        loader = Thread.currentThread().getContextClassLoader();
+        if (null == loader) {
+            loader = getClass().getClassLoader();
+        }
+        return loader;
     }
 
-    private Object jarUriToPath(String basePackagePath, URI uri) {
+    private Path jarUriToPath(String basePackagePath, URI jarUri) throws IOException {
+        return FileSystems.newFileSystem(jarUri, new HashMap<>()).getPath(basePackagePath);
     }
 
-    private String removeTrailingSlash(Object o) {
+    private <R> void scanFile(boolean isJar, String uriBaseStr, Path root, List<R> collector, Function<Resource, R> mapper) throws IOException {
+        String baseDir = removeTrailingSlash(uriBaseStr);
+        Files.walk(root).filter(Files::isRegularFile).forEach(file -> {
+            Resource res;
+            if (isJar) {
+                res = new Resource(baseDir, removeTrailingSlash(file.toString()));
+            } else {
+                String path = file.toString();
+                String name = removeLeadingSlash(path.substring(baseDir.length()));
+                res = new Resource("file:" + path, name);
+            }
+            logger.debug("found resource:{}", res);
+            R r = mapper.apply(res);
+            if (null != r) {
+                collector.add(r);
+            }
+        });
     }
 
-    private Object uriToString(URI uri) {
+    private String uriToString(URI uri) throws UnsupportedEncodingException {
+        return URLDecoder.decode(uri.toString(), String.valueOf(StandardCharsets.UTF_8));
     }
+
+    private String removeTrailingSlash(String s) {
+        if (s.startsWith("/") || s.startsWith("\\")) {
+            s = s.substring(1);
+        }
+        return s;
+    }
+
+    private String removeLeadingSlash(String s) {
+        if (s.endsWith("/") || s.endsWith("\\")) {
+            s = s.substring(0, s.length() - 1);
+        }
+        return s;
+    }
+
+
 }
