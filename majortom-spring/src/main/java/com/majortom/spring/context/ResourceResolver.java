@@ -15,7 +15,6 @@ import java.nio.file.*;
 import java.util.*;
 import java.util.function.Function;
 
-import static com.sun.org.apache.xalan.internal.utils.SecuritySupport.getContextClassLoader;
 
 /**
  * <p>

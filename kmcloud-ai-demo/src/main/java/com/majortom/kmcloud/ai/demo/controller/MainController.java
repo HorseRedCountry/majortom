@@ -42,7 +42,8 @@ public class MainController {
         jsonObject.put("query", queryStr);
         //查询，获取知识库列表
         String result = HttpUtils.doPost("http://192.168.21.54:7861/chat/knowledge_base_chat", jsonObject.toJSONString());
-        return result;
+        JSONObject jsonObject1 = JSONObject.parseObject(result);
+        return jsonObject1.getString("answer");
     }
 
     private JSONObject getJSONObject() {

@@ -76,7 +76,12 @@ public class HttpUtils {
                 }
             }
         }
-        return result;
+        String[] split = result.split("data:");
+        if (split.length > 1) {
+            return split[1];
+        }
+        return "";
+
     }
 
 }
