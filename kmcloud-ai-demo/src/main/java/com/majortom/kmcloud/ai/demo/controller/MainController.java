@@ -24,7 +24,7 @@ public class MainController {
     @GetMapping(value = "/index")
     public ModelAndView getIndex(Model model) {
         //查询，获取知识库列表
-        String result = HttpUtils.doGet("http://192.168.21.54:7861/knowledge_base/list_knowledge_bases");
+        String result = HttpUtils.doGet("http://192.168.20.165:7861/knowledge_base/list_knowledge_bases");
         JSONObject parse = JSONObject.parseObject(result);
         List<String> resultList = Lists.newArrayList();
         for (Object data : parse.getJSONArray("data")) {
@@ -41,8 +41,11 @@ public class MainController {
         jsonObject.put("knowledge_base_name", sel);
         jsonObject.put("query", queryStr);
         //查询，获取知识库列表
-        String result = HttpUtils.doPost("http://192.168.21.54:7861/chat/knowledge_base_chat", jsonObject.toJSONString());
+        String result = HttpUtils.doPost("http://192.168.20.165:7861/chat/knowledge_base_chat", jsonObject.toJSONString());
         JSONObject jsonObject1 = JSONObject.parseObject(result);
+        String answer = jsonObject1.getString("answer");
+        String parseAnswer = answer.replace("\n\n", "</BR></BR>").replace("\n", "</BR>");
+        System.out.println(parseAnswer);
         return jsonObject1.getString("answer");
     }
 
@@ -55,7 +58,6 @@ public class MainController {
         jsonObject.put("temperature", 0.7);
         jsonObject.put("max_tokens", 0);
         jsonObject.put("prompt_name", "default");
-
         return jsonObject;
     }
 
